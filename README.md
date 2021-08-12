@@ -20,3 +20,10 @@ If for some reason node continues to run in the terminal it is no problem to clo
 # Future plans:
 - I want to a feature to automatically generate names. I'll probably allow for different methods of generation because people have different preferences in names.
 - I want to add an option to automatically send the next batch of names every 10 minutes so you don't have to come back every 10 minutes. The ground work for this is already in place. I basically just need to set a timer in frontend.js
+
+# Dependencies:
+- get-port 5.1.1: This is a simple way to find an open port on you computer. This is nessesary for the browser and node to communicate.
+- node-fetch 2.6.1: This allows node to make the requests to the Mojang api.
+- node-static 0.7.11: This is a simple static web server used to load the index.html page.
+- open 8.2.1: This allows node to open the page automatically.
+- websocket 1.0.34: This is also necessary for the browser and node to communicate.
