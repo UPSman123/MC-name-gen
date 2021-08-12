@@ -38,7 +38,8 @@ const handleMessage = (msg, connection) => {
 const processRequest = (request, connection) => {
     let processed = [];
     let available = [];
-    let totalRequests = 0;
+    let totalRequestsCreated = 0;
+    let totalRequestsClosed = 0;
     const mainPromise = new Promise(async (resolve, reject) => {
         let openRequests = 0;
         let canceled = false;
@@ -48,7 +49,7 @@ const processRequest = (request, connection) => {
             if (unprocessedIgns.length === 0) return;
 
             openRequests++;
-            totalRequests++;
+            totalRequestsCreated++;
             const chunk = unprocessedIgns.splice(0, 10);
             checkChunk(chunk)
                 .then(chunkAvailableIgns => {
@@ -57,16 +58,19 @@ const processRequest = (request, connection) => {
                     available.push(...chunkAvailableIgns);
 
                     openRequests--;
+                    totalRequestsClosed++;
                     // If this was the last open request and all requests have been made then resolve.
                     if (unprocessedIgns.length === 0 && openRequests === 0) {
                         resolve();
                     }
                 })
                 .catch(() => {
-                    if (!canceled) console.log('too many requests');
-                    canceled = true;
-                    reject();
-                    return;
+                    totalRequestsClosed++;
+                    if (!canceled) {
+                        console.log('too many requests');
+                        canceled = true;
+                        setTimeout(reject, 10 * 1000);
+                    }
                 });
 
             // Process the next chunk. Timeout is to allow responses to be processed.
@@ -90,7 +94,8 @@ const processRequest = (request, connection) => {
             processed: processed,
             available: available,
         }));
-        console.log(`${request.requestNr}: finished. Nr mojang requests: ${totalRequests}`);
+        console.log(`${request.requestNr}: finished. \
+Nr mojang requests created: ${totalRequestsCreated}, requests closed: ${totalRequestsClosed}`);
     };
 
     // Wait for requests to finish.
