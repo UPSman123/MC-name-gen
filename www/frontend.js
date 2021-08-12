@@ -64,6 +64,9 @@ const handleServerResponse = async (e) => {
             `Mojang timeout.
 Not all names were processed. The processed names have been removed from the input.`;
         notificationField.style.display='';
+
+        // Give alert when Mojang timeout is over.
+        setTimeout(() => alert('Mojang timeout is over'), 10 * 60 * 1000);
     }
 
     // Display available names to the user.
