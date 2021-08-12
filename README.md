@@ -10,7 +10,7 @@ Using Node has the bennefit that you can see the code and be sure that there is 
 However, downloading the executable is easyer if you don't already have Node installed.
 
 ## Downloading the executable:
-It's very easy. You just go to the execs folder on the github page or use this link: https://github.com/UPSman123/MC-name-gen/tree/master/execs.
+It's very easy. You just go to the execs folder on the github page or use this link: https://github.com/UPSman123/MC-name-gen/tree/Executables/execs.
 Then download the file for your operating system.
 You can then run the executable and it should work. I will add that I have only tested the Linux version.
 If you are having difficulty know that installing Node is always an option and not as difficult as you might think.
