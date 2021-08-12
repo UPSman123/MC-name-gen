@@ -4,6 +4,7 @@ const open = require('open');           // To open the index.html page in the br
 const fetch = require('node-fetch');    // To make the requests to mojang
 const websocket = require('websocket'); // To communicate with the browser
 const getPort = require('get-port');    // To get a free port number
+const path = require('path');           // To have cross platform file paths
 
 const www = './www';
 
@@ -96,8 +97,6 @@ const processRequest = (request, connection) => {
     mainPromise.then(sendBackResults).catch(sendBackResults);
 };
 
-const staticServer = new statc.Server(www, {cache: 0});
-
 const main = async () => {
     const port = await getPort({port: 8000});
     console.log('port: ' + port);
@@ -105,6 +104,7 @@ const main = async () => {
 
     // Create simple http server to serve static files from the www folder.
     console.log('starting http server');
+    const staticServer = new statc.Server(path.join(__dirname, www), {cache: 0});
     const httpServer = http.createServer((req, res) => {
         const url = req.url.split('/').filter(Boolean);
         if (url.length > 0 && url[0] === 'query') {
