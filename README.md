@@ -6,7 +6,10 @@ Mojang allows 600 requests every 10 minutes so with this program you can check 6
 
 # Installation:
 - To use this program you need to have Node.js installed. This can be done here: https://nodejs.org/en/download/
-- When you Node installed open a terminal inside the project folder. 
+- You can check whether you have it installed by opening a terminal and typing `node --version` if it returns something like `v16.4.1` then it installed correctly.
+- You can now download the program. on the GitHub page click on the `code` button in the top right and select 'Download ZIP'.
+- You now need to extract the zip into a folder.
+- Once you installed Node, open a terminal inside the project folder.
 (This can be done by going to the folder in your file manager and right clicking. There should be an option to 'open in terminal')
 - In the terminal type `npm install` (and press Enter). This will install all the dependencies needed. This might take a few minutes.
 - Once the dependencies are installed type `node .` (and press Enter). This open the program in Node.
