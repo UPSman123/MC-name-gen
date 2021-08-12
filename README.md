@@ -2,7 +2,7 @@ This is a bulk name checker for Minecraft. You can enter a list of names and che
 Main features include reading in .txt files and using a minimal number of requests so you can check more names before you are timed out.
 
 Using the Mojang bulk api 10 names can be check with one request.
-Mojang allows 600 requests every 10 minutes so with this program you can check 6000 names every 10 minutes.
+Mojang allows 600 requests every 10 minutes so with this program you can check 6000 names every 10 minutes. (While theoretically possible we currently only see about 1560 names every 10 minutes. Why exactly this happends is under investigation. https://github.com/UPSman123/MC-name-gen/issues/2)
 
 # Installation:
 You can either download the executable directly from the execs folder or you can install Node.js and npm to run the program directly.
