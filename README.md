@@ -30,6 +30,18 @@ The page will automatically open in your browser and is ready to be used.
 - To close the program it should be sufficient to close the browser tab.
 If for some reason node continues to run in the terminal it is no problem to close the terminal or interupt the program.
 
+# Usage:
+1. Start by running the executable. This starts the server and opens a browser window with the application.
+2. You can input names either by typing them into the text field. You can also copy them or drag in a .txt file.
+    - Names should be seperated by new lines or spaces.
+3. Once you inserted all the names click `Go`. This will start the checking process.
+4. After the program is done a new text field will appear bellow the input field. This contains the available names.
+5. There will also be a `Select` button next to the output field. This will select the available names for easy copying.
+
+If you entered too many names Mojang will give you a timeout before all the names are procesed.
+In this case the names which have been processed will be removed from the input field leaving the rest.
+If you want to process the rest of the names you should wait 10 minutes for the timeout to pass.
+
 # Future plans:
 - I want to a feature to automatically generate names. I'll probably allow for different methods of generation because people have different preferences in names.
 - I want to add an option to automatically send the next batch of names every 10 minutes so you don't have to come back every 10 minutes. The ground work for this is already in place. I basically just need to set a timer in frontend.js
