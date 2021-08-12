@@ -5,8 +5,20 @@ Using the Mojang bulk api 10 names can be check with one request.
 Mojang allows 600 requests every 10 minutes so with this program you can check 6000 names every 10 minutes.
 
 # Installation:
-- To use this program you need to have Node.js and npm installed. This can be done here https://nodejs.org/en/download/
-at the official site or here https://phoenixnap.com/kb/install-node-js-npm-on-windows (for windows) with a guide.
+You can either download the executable directly from the execs folder or you can install Node.js and npm to run the program directly.
+Using Node has the bennefit that you can see the code and be sure that there is no spooky buisiness. You can then also alter the program if you want.
+However, downloading the executable is easyer if you don't already have Node installed.
+
+## Downloading the executable:
+It's very easy. You just go to the execs folder on the github page or use this link: https://github.com/UPSman123/MC-name-gen/tree/master/execs.
+Then download the file for your operating system.
+You can then run the executable and it should work. I will add that I have only tested the Linux version.
+If you are having difficulty know that installing Node is always an option and not as difficult as you might think.
+Alternatively you can contact me on GitHub or send an email (UPSman123@protonmail.com).
+
+## Using Node.js and npm:
+- To run this program on Node you need to have it installed. You will also need npm but that is automatically included.
+You can install it from the official website (https://nodejs.org/en/download/) but I sugest using a guide (https://phoenixnap.com/kb/install-node-js-npm-on-windows).
 - You can check whether you have it installed by opening a terminal and typing `node --version` if it returns something like `v16.4.1` then it installed correctly.
 - You can now download the program. on the GitHub page click on the `Code` button in the top right and select 'Download ZIP'.
 - You now need to extract the zip into a folder.
