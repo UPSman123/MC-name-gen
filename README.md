@@ -19,4 +19,4 @@ If for some reason node continues to run in the terminal it is no problem to clo
 
 # Future plans
 - I want to a feature to automatically generate names. I'll probably allow for different methods of generation because people have different preferences in names.
-- I want to add an option to automatically send the next batch of names every 10 minutes so you can check more than 6000 names at a time. The ground work for this is already in place. I basically just need to set a timer in frontend.js
+- I want to add an option to automatically send the next batch of names every 10 minutes so you don't have to come back every 10 minutes. The ground work for this is already in place. I basically just need to set a timer in frontend.js
