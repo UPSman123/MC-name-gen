@@ -2,7 +2,7 @@ This is a bulk name checker for Minecraft. You can enter a list of names and che
 Main features include reading in .txt files and using a minimal number of requests so you can check more names before you are timed out.
 
 Using the Mojang bulk api 10 names can be check with one request.
-Mojang allows 600 requests every 10 minutes so with this program you can check 6000 names every 10 minutes.
+Mojang allows 600 requests every 10 minutes so with this program you can check 6000 names every 10 minutes. (While theoretically possible we currently only see about 1560 names every 10 minutes. Why exactly this happends is under investigation. https://github.com/UPSman123/MC-name-gen/issues/2)
 
 # Installation:
 You can either download the executable directly from the execs folder or you can install Node.js and npm to run the program directly.
@@ -10,7 +10,7 @@ Using Node has the bennefit that you can see the code and be sure that there is 
 However, downloading the executable is easyer if you don't already have Node installed.
 
 ## Downloading the executable:
-It's very easy. You just go to the execs folder on the github page or use this link: https://github.com/UPSman123/MC-name-gen/tree/master/execs.
+It's very easy. You just go to the execs folder on the github page or use this link: https://github.com/UPSman123/MC-name-gen/tree/Executables/execs.
 Then download the file for your operating system.
 You can then run the executable and it should work. I will add that I have only tested the Linux version.
 If you are having difficulty know that installing Node is always an option and not as difficult as you might think.
@@ -29,6 +29,18 @@ You can install it from the official website (https://nodejs.org/en/download/) b
 The page will automatically open in your browser and is ready to be used.
 - To close the program it should be sufficient to close the browser tab.
 If for some reason node continues to run in the terminal it is no problem to close the terminal or interupt the program.
+
+# Usage:
+1. Start by running the executable. This starts the server and opens a browser window with the application.
+2. You can input names either by typing them into the text field. You can also copy them or drag in a .txt file.
+    - Names should be seperated by new lines or spaces.
+3. Once you inserted all the names click `Go`. This will start the checking process.
+4. After the program is done a new text field will appear bellow the input field. This contains the available names.
+5. There will also be a `Select` button next to the output field. This will select the available names for easy copying.
+
+If you entered too many names Mojang will give you a timeout before all the names are procesed.
+In this case the names which have been processed will be removed from the input field leaving the rest.
+If you want to process the rest of the names you should wait 10 minutes for the timeout to pass.
 
 # Future plans:
 - I want to a feature to automatically generate names. I'll probably allow for different methods of generation because people have different preferences in names.
