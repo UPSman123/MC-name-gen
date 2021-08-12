@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang='en'>
+
+<head>
+    <title>MC name-gen</title>
+    <!-- Required meta tags for Bootstrap -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+</head>
+
+<body class="bg-dark text-white">
+    <div class="container pt-3">
+        <div class="row">
+            <div class="col-md-12">
+                <h1>MC name-gen</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <label>Put the names to test here.</label>
+                <form class="form-inline" onsubmit="return false">
+                    <div class="row mt-3">
+                        <div class="col-md-9 pb-3">
+                            <textarea class="form-control" id="input-ign" rows="5" placeholder="name1
+name2
+..."></textarea>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="row h-100">
+                                <div class="col-md-12 mt-auto pb-3">
+                                    <button type="submit" class="btn btn-primary" onclick="handleGoClick()">Go</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="row" id="output-div" style="display: none">
+            <div class="col-md-9">
+                <textarea class="form-control" rows="5" readonly id="output-ign"
+                    placeholder="No available names found."></textarea>
+            </div>
+            <div class="col-md-3 mt-auto">
+                <button class="btn btn-secondary" id="copy-button" onclick="handleCopyClick()">Select output</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-9 mt-3">
+                <div class="alert alert-warning" role="alert" style="display: none" id="notification-field"></div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src=frontend.js></script>
+
+</html>

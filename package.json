@@ -1,0 +1,21 @@
+{
+  "name": "name-gen",
+  "version": "1.1.0",
+  "description": "Generate and check minecraft user names for availability.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "minecraft"
+  ],
+  "author": "UPSman123",
+  "license": "ISC",
+  "dependencies": {
+    "get-port": "^5.1.1",
+    "node-fetch": "^2.6.1",
+    "node-static": "^0.7.11",
+    "open": "^8.2.1",
+    "websocket": "^1.0.34"
+  }
+}

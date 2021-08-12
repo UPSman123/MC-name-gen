@@ -1,0 +1,5 @@
+node_modules/
+*.swp
+
+# You don't need my word lists.
+*.txt
