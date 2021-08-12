@@ -5,7 +5,7 @@ Using the Mojang bulk api 10 names can be check with one request.
 Mojang allows 600 requests every 10 minutes so with this program you can check 6000 names every 10 minutes.
 
 # Installation:
-- To use this program you need to have Node.js installed. This can be done here https://nodejs.org/en/download/
+- To use this program you need to have Node.js and npm installed. This can be done here https://nodejs.org/en/download/
 at the official site or here https://phoenixnap.com/kb/install-node-js-npm-on-windows (for windows) with a guide.
 - You can check whether you have it installed by opening a terminal and typing `node --version` if it returns something like `v16.4.1` then it installed correctly.
 - You can now download the program. on the GitHub page click on the `Code` button in the top right and select 'Download ZIP'.
