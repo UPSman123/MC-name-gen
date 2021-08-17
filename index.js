@@ -37,16 +37,19 @@ const handleMessage = (msg, connection) => {
     processRequest(request, connection);
 };
 
-const processRequest = async (request, connection) => {
+const processRequest = (request, connection) => {
     let processed = [];
     let available = [];
     let totalRequests = 0;
     let unprocessedIgns = request.igns;
 
-    while (unprocessedIgns.length !== 0) {
+    const foo = async () => {
         console.log(`request nr: ${totalRequests}`);
         totalRequests++;
         try {
+            if (unprocessedIgns.length === 0) {
+                done();
+            }
             const chunk = unprocessedIgns.splice(0, 10);
             chunkAvailableIgns = await checkChunk(chunk)
 
@@ -54,18 +57,25 @@ const processRequest = async (request, connection) => {
             processed.push(...chunk);
             available.push(...chunkAvailableIgns);
         } catch {
-            break;
+            done();
         }
     }
 
-    // Send the results back.
-    connection.send(JSON.stringify({
-        requestNr: request.requestNr,
-        processed: processed,
-        available: available,
-    }));
-    console.log(`${request.requestNr}: finished. \
+    const done = () => {
+        clearInterval(intervalId);
+
+        // Send the results back.
+        connection.send(JSON.stringify({
+            requestNr: request.requestNr,
+            processed: processed,
+            available: available,
+        }));
+        console.log(`${request.requestNr}: finished. \
 Nr mojang requests : ${totalRequests}`);
+    };
+
+    const intervalId = setInterval(foo, 1000);
+
 };
 
 const main = async () => {
