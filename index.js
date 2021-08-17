@@ -11,6 +11,8 @@ const www = './www';
 const apiUrl = 'https://api.mojang.com/profiles/minecraft';
 
 const checkChunk = async (igns) => {
+    console.log('send request');
+    console.log(igns);
     const res = await fetch(apiUrl, {
         headers: {'Content-Type': 'application/json'},
         method: 'post',
@@ -35,71 +37,35 @@ const handleMessage = (msg, connection) => {
     processRequest(request, connection);
 };
 
-const processRequest = (request, connection) => {
+const processRequest = async (request, connection) => {
     let processed = [];
     let available = [];
-    let totalRequestsCreated = 0;
-    let totalRequestsClosed = 0;
-    const mainPromise = new Promise(async (resolve, reject) => {
-        let openRequests = 0;
-        let canceled = false;
-        let unprocessedIgns = request.igns;
+    let totalRequests = 0;
+    let unprocessedIgns = request.igns;
 
-        const foo = () => {
-            if (unprocessedIgns.length === 0) return;
-
-            openRequests++;
-            totalRequestsCreated++;
+    while (unprocessedIgns.length !== 0) {
+        console.log(`request nr: ${totalRequests}`);
+        totalRequests++;
+        try {
             const chunk = unprocessedIgns.splice(0, 10);
-            checkChunk(chunk)
-                .then(chunkAvailableIgns => {
-                    // Set the igns as processed and save the available ones.
-                    processed.push(...chunk);
-                    available.push(...chunkAvailableIgns);
+            chunkAvailableIgns = await checkChunk(chunk)
 
-                    openRequests--;
-                    totalRequestsClosed++;
-                    // If this was the last open request and all requests have been made then resolve.
-                    if (unprocessedIgns.length === 0 && openRequests === 0) {
-                        resolve();
-                    }
-                })
-                .catch(() => {
-                    totalRequestsClosed++;
-                    if (!canceled) {
-                        console.log('too many requests');
-                        canceled = true;
-                        setTimeout(reject, 10 * 1000);
-                    }
-                });
-
-            // Process the next chunk. Timeout is to allow responses to be processed.
-            setTimeout(foo, 0);
-        };
-
-        // Start the loop.
-        setTimeout(foo, 0);
-
-        // In case the requests immediately resolve.
-        // This should never happen but you never know.
-        if (openRequests === 0 && unprocessedIgns.length === 0) {
-            resolve();
+            // Set the igns as processed and save the available ones.
+            processed.push(...chunk);
+            available.push(...chunkAvailableIgns);
+        } catch {
+            break;
         }
-    });
+    }
 
-    const sendBackResults = () => {
-        // Send the results back.
-        connection.send(JSON.stringify({
-            requestNr: request.requestNr,
-            processed: processed,
-            available: available,
-        }));
-        console.log(`${request.requestNr}: finished. \
-Nr mojang requests created: ${totalRequestsCreated}, requests closed: ${totalRequestsClosed}`);
-    };
-
-    // Wait for requests to finish.
-    mainPromise.then(sendBackResults).catch(sendBackResults);
+    // Send the results back.
+    connection.send(JSON.stringify({
+        requestNr: request.requestNr,
+        processed: processed,
+        available: available,
+    }));
+    console.log(`${request.requestNr}: finished. \
+Nr mojang requests : ${totalRequests}`);
 };
 
 const main = async () => {
