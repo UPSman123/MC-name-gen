@@ -43,26 +43,37 @@ const processRequest = (request, connection) => {
     let totalRequests = 0;
     let unprocessedIgns = request.igns;
 
+    const requestInterval = () => {
+        const min = 500;
+        const max = 1000;
+        return Math.random() * (max - min) + min;
+    };
+
+    let shouldBreak = false;
     const foo = async () => {
+        if (shouldBreak) return;
+        if (unprocessedIgns.length === 0) {
+            done();
+            return;
+        }
+        setTimeout(foo, requestInterval());
         console.log(`request nr: ${totalRequests}`);
         totalRequests++;
         try {
-            if (unprocessedIgns.length === 0) {
-                done();
-            }
             const chunk = unprocessedIgns.splice(0, 10);
-            chunkAvailableIgns = await checkChunk(chunk)
+            const chunkAvailableIgns = await checkChunk(chunk)
 
             // Set the igns as processed and save the available ones.
             processed.push(...chunk);
             available.push(...chunkAvailableIgns);
         } catch {
             done();
+            return;
         }
     }
 
     const done = () => {
-        clearInterval(intervalId);
+        shouldBreak = true;
 
         // Send the results back.
         connection.send(JSON.stringify({
@@ -74,7 +85,7 @@ const processRequest = (request, connection) => {
 Nr mojang requests : ${totalRequests}`);
     };
 
-    const intervalId = setInterval(foo, 1000);
+    setTimeout(foo, 0);
 
 };
 
