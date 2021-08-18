@@ -87,8 +87,20 @@ const handleDrop = (e, textArea) => {
 
     const dt = e.dataTransfer;
     const files = dt.files;
-    if (files.length !== 1) alert('You have to insert exactly 1 file.');
+    if (files.length !== 1) {
+        alert('You have to insert exactly 1 file.');
+        return;
+    }
     const file = files[0];
+    const extension = file.name.split('.').pop();
+    if (extension !== 'txt') {
+        alert('The file has to be a .txt file.');
+        return;
+    }
+    if (file.type !== 'text/plain') {
+        alert('The file has to be a text file.');
+        return;
+    }
 
     file.text()
         .then(text => {
